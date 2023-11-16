@@ -9,4 +9,15 @@ Within Google, we sometimes say, “Software engineering is programming integrat
 
 Comentários:
   Engenharia de software não é só programar mas sim levar em consideração outros aspectos importantes do projeto principalmente como tempo, tomar decisões de desenvolvimento levando em consideração manutenções futuras, alterações de funcionalidades e usabilidade.
->>>>>>> f5606221edbc13bb34ce1726fb952413c1dfb523
+
+
+<img src="https://github.com/dievit/Bertoti/assets/125148142/d515202a-f346-4f91-9c50-8ba76c16dea0" alt="Diagrama de classe"><br>
+<img src="https://github.com/dievit/Bertoti/assets/125148142/ef809a7f-cd22-4314-badc-d6ec2f9fdc73" alt="print1">
+<br>
+<img src="https://github.com/dievit/Bertoti/assets/125148142/833d8941-4756-4478-98db-c6c22c4f476d" alt="print2">
+<br>
+<img src="https://github.com/dievit/Bertoti/assets/125148142/2dfb20ae-d539-4133-9aac-0ca979f12bdf" alt="print3">
+<br>
+
+
+
