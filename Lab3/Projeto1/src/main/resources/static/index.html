@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busca CEP - Projeto Faculdade</title>
     <style>
+        .escondido { display: none; }
         body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
         .card { border: 1px solid #ccc; padding: 15px; margin-top: 10px; border-radius: 8px; background-color: #f9f9f9; }
         button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
@@ -13,12 +14,13 @@
     </style>
 </head>
 <body>
-
     <h2>Consultar CEP</h2>
     <input type="text" id="cepInput" placeholder="00000-000" maxlength="9" oninput="mascaraCep(this)">
     <button onclick="buscarCep()">Buscar</button>
-
-    <div id="resultado" class="card" style="display:none;">
+    <button onclick="gerarRelatorio()" style="background-color: #28a745; margin-left: 10px;">
+        Imprimir Relatório (TXT)
+    </button>
+    <div id="resultado" class="card escondido">
         <h3>Resultado:</h3>
         <p><strong>Rua:</strong> <span id="rua"></span></p>
         <p><strong>Cidade:</strong> <span id="cidade"></span></p>
@@ -28,36 +30,31 @@
     <h3>Histórico de Buscas (Banco de Dados)</h3>
     <ul id="listaHistorico"></ul>
 
-<script>
-        // --- NOVA FUNÇÃO DE MÁSCARA ---
+    <script>
         function mascaraCep(input) {
-            // Remove tudo que não for número (letra, símbolo, espaço)
             let value = input.value.replace(/\D/g, "");
-            
-            // Adiciona o traço após o quinto número
             if (value.length > 5) {
                 value = value.replace(/^(\d{5})(\d)/, "$1-$2");
             }
-            
-            // Atualiza o valor no campo
             input.value = value;
         }
 
         async function buscarCep() {
-            let cep = document.getElementById('cepInput').value;
-            
-            // IMPORTANTE: Remove o traço antes de enviar para a API
-            // Assim a API do ViaCEP e seu banco recebem apenas "01001000"
-            cep = cep.replace("-", "");
+            let cep = document.getElementById('cepInput').value.replace("-", "");
 
             if (cep.length !== 8) {
                 alert("O CEP deve ter 8 números!");
                 return;
             }
-            
-            const resposta = await fetch(`/api/consulta/${cep}`);
-            
-            // Se der erro na resposta (ex: internet caiu)
+
+            const resposta = await fetch('/api/consulta', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: cep
+            });
+
             if (!resposta.ok) {
                 alert("Erro ao buscar CEP. Verifique o console.");
                 return;
@@ -69,7 +66,7 @@
                 document.getElementById('rua').innerText = dados.logradouro;
                 document.getElementById('cidade').innerText = dados.localidade;
                 document.getElementById('estado').innerText = dados.uf;
-                document.getElementById('resultado').style.display = 'block';
+                document.getElementById('resultado').classList.remove('escondido');
                 carregarHistorico();
             } else {
                 alert("CEP não encontrado!");
@@ -85,11 +82,20 @@
 
             lista.forEach(item => {
                 const li = document.createElement('li');
-                // Aqui podemos adicionar o traço visualmente só na hora de mostrar
                 const cepFormatado = item.cep.replace(/^(\d{5})(\d)/, "$1-$2");
                 li.innerText = `${cepFormatado} - ${item.logradouro}, ${item.localidade}`;
                 ul.appendChild(li);
             });
+        }
+
+        async function gerarRelatorio() {
+            alert("Gerando relatório na pasta Downloads...");
+
+            const resposta = await fetch('/api/relatorio');
+            
+            const texto = await resposta.text();
+
+            alert(texto);
         }
 
         carregarHistorico();

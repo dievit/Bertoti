@@ -22,7 +22,7 @@ public class BuscacepApplication {
 			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
 				Desktop.getDesktop().browse(new URI("http://localhost:8080"));
 			} else {
-				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler http://localhost:8080");
+				new ProcessBuilder("rundll32", "url.dll,FileProtocolHandler", "http://localhost:8080").start();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
