@@ -1,15 +1,17 @@
-# Portfólio 2° Semestre Banco de Dados
+# Portfólio 3° Semestre Banco de Dados
 
 ## Descrição
-  ## Gerenciador de Horários Acadêmicos
-  Este projeto é um sistema desktop desenvolvido para a Fatec de São José dos Campos, com o objetivo de otimizar a montagem de grades horárias para coordenadores de curso. O software agiliza o processo de alocação de professores, disciplinas e turmas, substituindo métodos manuais por uma solução digital eficiente.
+  ## Plataforma de Mapeamento de Competências Altave
+  Plataforma web para mapeamento de competências internas da Altave. Permite que colaboradores criem perfis profissionais e gestores visualizem habilidades da equipe para formação estratégica de times.
 
-  ## Funcionalidades e Versões
-O sistema foi concebido em duas versões para se adaptar às diferentes necessidades dos usuários:
+  Problema: Dificuldade em identificar habilidades específicas entre colaboradores à medida que a empresa cresce.
 
-Versão 1 - Sistema de Cadastro: Permite ao coordenador cadastrar manualmente professores, cursos e disciplinas. Esta versão é ideal para a inserção e gestão de dados de forma flexível, permitindo total controle sobre as informações do banco de dados.
+  Solução: "LinkedIn interno" com perfis, busca avançada por competências e visão analítica para gestão de talentos.
 
-Versão 2 - Sistema Pré-carregado: Oferece uma solução pronta para uso, com os dados da instituição já adicionados e configurados no banco de dados. Esta versão foi pensada para coordenadores que precisam de uma ferramenta funcional de imediato, sem a necessidade de uma etapa de cadastro inicial.
+  ## Funcionalidades
+  A plataforma foi pensada como um Linkedin, com utilização interna pelo cliente para que pudesse descobrir talentos dentro dos times já existentes na companhia.
+  Exemplo: Um Gestor de uma área de finanças precisa de um analista com habilidades em Python para extrair da melhor forma os dados para relatórios, apresentações e insights relacionados a área, ele buscaria dentro da plataforma com filtros de habilidades técnicas, após esta busca retornariam algumas opções, dentro destas opções o gestor pode analizar outros requisitos tais como outras habilidades técnicas, habilidades relacionais, participação em projetos e até mesmo o pefil DISC (Avaliação comportamental) para que possa montar sua equipe da melhor forma.
+  Da parte do usuário, ele tem a possibilidade de inserir seus cursos, formações, experiência profissional e acadêmica, realizar o teste DISC que é mandatório, pode colocar também habilidades técnicas e comportamentais que possam lhe destacar positivamente dentre os demais candidatos.
 
 ## Tecnologias
 
