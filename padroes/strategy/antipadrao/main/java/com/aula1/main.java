@@ -3,7 +3,7 @@ package strategy.antipadrao.main.java.com.aula1;
 import strategy.antipadrao.main.java.com.aula1.model.Cliente;
 
 public class main {
-    public static void main(String[] args) {
+    public main(String[] args) {
         // Criando clientes
         Cliente cliente1 = new Cliente("João", "joao@test.com") {
             @Override

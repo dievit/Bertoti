@@ -9,4 +9,10 @@ public class Empresa extends Cliente {
     public void calcularEmprestimo() {
         throw new UnsupportedOperationException("Empresas não podem solicitar empréstimos.");
     }
+
+    @Override
+    public void exibirInfo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'exibirInfo'");
+    }
 }
