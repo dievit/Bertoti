@@ -1,12 +1,14 @@
-package com.aula1.model;
+package strategy.antipadrao.main.java.com.aula1.model;
+
+
 
 public class Estudante extends Cliente {
     public Estudante(String nome, String email) {
         super(nome, email);
     }
 
-    public void exibirInfo() {
-        System.out.println("Cliente estudante: " + getNome());
+    @Override
+    public void calcularEmprestimo() {
+        throw new UnsupportedOperationException("Estudantes não podem solicitar empréstimos.");
     }
-
 }
