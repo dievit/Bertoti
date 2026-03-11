@@ -10,6 +10,8 @@ Este repositório contém um projeto acadêmico desenvolvido em Java para demons
 * [5. Principais Diferenças](#5-principais-diferenças)
 * [6. Código Exemplo](#6-código-exemplo)
 * [7. Como Executar](#7-como-executar)
+* [📂 Ver código do Anti-padrão](./antipadrao)
+* [📂 Ver código do Padrão (Strategy)](./padrao)
 
 ---
 
