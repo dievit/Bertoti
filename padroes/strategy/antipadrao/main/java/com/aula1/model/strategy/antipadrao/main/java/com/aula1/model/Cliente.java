@@ -1,5 +1,7 @@
 package strategy.antipadrao.main.java.com.aula1.model;
 
+import strategy.padrao.main.java.com.aula1.model.EmprestimoConsignado;
+
 public abstract class Cliente {
     public String nome;
     public String email;
@@ -34,4 +36,6 @@ public abstract class Cliente {
     }
 
     public abstract void exibirInfo();
+
+    protected abstract void setEmprestimo(EmprestimoConsignado emprestimoConsignado);
 }
