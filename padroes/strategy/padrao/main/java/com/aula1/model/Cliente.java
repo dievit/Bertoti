@@ -19,14 +19,17 @@ public abstract class Cliente {
 
     }
 
-    public void exibirInfo() {
-        System.out.println("Nome: " + this.nome + " | Email: " + this.email);
+    public void simularEmprestimo(double valorPrincipal, int meses) {
+        System.out.println("----------------------------------");
+        System.out.println("Simulação para: " + this.nome);
+        
         if (categoriaEmprestimo != null) {
-            categoriaEmprestimo.calcular();
+            categoriaEmprestimo.calcular(valorPrincipal, meses);
         } else {
             System.out.println("Status: Sem empréstimo disponível.");
         }
     }
+
 
     public String getNome() {
         return nome;

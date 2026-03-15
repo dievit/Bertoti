@@ -1,6 +1,6 @@
 package strategy.antipadrao.main.java.com.aula1.model;
 
-public class Estudante extends Cliente {
+public abstract class Estudante extends Cliente {
     public Estudante(String nome, String email) {
         super(nome, email);
     }

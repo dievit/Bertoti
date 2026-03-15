@@ -2,25 +2,20 @@ package strategy.padrao.main;
 
 import strategy.padrao.main.java.com.aula1.model.Aposentado;
 import strategy.padrao.main.java.com.aula1.model.Cliente;
+import strategy.padrao.main.java.com.aula1.model.Empresa;
 import strategy.padrao.main.java.com.aula1.model.Estudante;
 import strategy.padrao.main.java.com.aula1.model.EmprestimoConsignado;
 import strategy.padrao.main.java.com.aula1.model.EmprestimoEmpresa;
 
 public class Principal {
     public static void main(String[] args) {
-        new Principal();
-        Cliente cliente1 = new Aposentado("Seu João", "joao@email.com", "11-9999", "Rua das Flores, 50");
-        Cliente cliente2 = new Estudante("Maria", "maria@faculdade.com", "11-8888", "Av. Universitária, 100");
+        //Aposentado apo1 = new Aposentado("João Silva", "joao@email.com", "11-9999", "Rua das Flores, 50");
+        Empresa emp1 = new Empresa("Empresa Exemplo", "empresa@email.com", "11-8888", "Avenida Principal, 100");
 
-        cliente1.setEmprestimo(new EmprestimoConsignado());
-        cliente2.setEmprestimo(new EmprestimoEmpresa());
+        double valorPrincipal = 1000000; // Exemplo de valor
+        int meses = 96; // Exemplo de prazo
 
-        System.out.println("=== SISTEMA DE EMPRÉSTIMOS (PADRÃO STRATEGY) ===");
-        cliente1.exibirInfo();
-        cliente2.exibirInfo();
-
-        System.out.println("\n--- Atualizando cadastro da Maria ---");
-        cliente2.setEmprestimo(new EmprestimoConsignado());
-        cliente2.exibirInfo();
-    }
+        //apo1.simularEmprestimo(valorPrincipal, meses);
+        emp1.simularEmprestimo(valorPrincipal, meses);
+}
 }
