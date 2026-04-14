@@ -1,6 +1,6 @@
 package strategy.antipadrao.main.java.com.aula1.model;
 
-public abstract class Estudante extends Cliente {
+public class Estudante extends Cliente {
     public Estudante(String nome, String email) {
         super(nome, email);
     }
@@ -12,7 +12,6 @@ public abstract class Estudante extends Cliente {
 
     @Override
     public void exibirInfo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'exibirInfo'");
+        System.out.println("Cliente Estudante: " + getNome() + " | Email: " + getEmail());
     }
 }
