@@ -131,6 +131,21 @@ tech.exibirInfo(); // Saída: Exibe infos + "Status: Sem empréstimo disponível
 
 ## 7. Como Executar
 
-1. Certifique-se de ter o **Java JDK** instalado.
-2. Navegue até o diretório correspondente (`strategy/padrao/main` ou `strategy/antipadrao/main`).
-3. Compile e execute o arquivo principal (`Principal.java` ou `main.java`) pela sua IDE de preferência (VS Code, Eclipse, IntelliJ) ou via terminal.
+> ⚠️ Todos os comandos devem ser executados na raiz da pasta `padroes`.
+
+### Passo 1 — Compilar todos os arquivos
+```powershell
+javac -d out (Get-ChildItem -Recurse -Filter "*.java" | Select-Object -ExpandProperty FullName)
+```
+
+### Passo 2 — Executar
+
+**❌ Antipadrão:**
+```powershell
+java -cp out strategy.antipadrao.main.java.com.aula1.Principal
+```
+
+**✅ Padrão (Strategy):**
+```powershell
+java -cp out strategy.padrao.main.Principal
+```
