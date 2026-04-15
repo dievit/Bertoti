@@ -1,21 +1,24 @@
 package strategy.padrao.main;
 
-import strategy.padrao.main.java.com.aula1.model.Aposentado;
-import strategy.padrao.main.java.com.aula1.model.Cliente;
-import strategy.padrao.main.java.com.aula1.model.Empresa;
-import strategy.padrao.main.java.com.aula1.model.Estudante;
-import strategy.padrao.main.java.com.aula1.model.EmprestimoConsignado;
-import strategy.padrao.main.java.com.aula1.model.EmprestimoEmpresa;
+import strategy.padrao.main.java.com.aula1.model.*;
 
 public class Principal {
     public static void main(String[] args) {
-        //Aposentado apo1 = new Aposentado("João Silva", "joao@email.com", "11-9999", "Rua das Flores, 50");
-        Empresa emp1 = new Empresa("Empresa Exemplo", "empresa@email.com", "11-8888", "Avenida Principal, 100");
 
-        double valorPrincipal = 1000000; // Exemplo de valor
-        int meses = 96; // Exemplo de prazo
+        double valor = 10000;
+        int meses = 24;
 
-        //apo1.simularEmprestimo(valorPrincipal, meses);
-        emp1.simularEmprestimo(valorPrincipal, meses);
-}
+        Aposentado aposentado = new Aposentado("João Silva", "joao@email.com", "11-9999", "Rua das Flores, 50");
+        aposentado.simularEmprestimo(valor, meses);
+
+        Empresa empresa = new Empresa("Tech Ltda", "empresa@email.com", "11-8888", "Av. Principal, 100");
+        empresa.simularEmprestimo(valor, meses);
+
+        Estudante estudante = new Estudante("Carlos Souza", "carlos@email.com", "11-7777", "Rua B, 20");
+        estudante.simularEmprestimo(valor, meses);
+
+        System.out.println("\n-- Aposentado trocando para Empréstimo Empresarial --");
+        aposentado.setEmprestimo(new EmprestimoEmpresa());
+        aposentado.simularEmprestimo(valor, meses);
+    }
 }
