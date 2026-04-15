@@ -1,6 +1,6 @@
-package composite.pattern.main.java.com.model;
+package composite.antipattern.main.java.com.model;
 
-public class Sensor implements ComponenteDrone {
+public class Sensor {
     private String nome;
     private double peso;
     private double custoManutencao;
@@ -11,17 +11,7 @@ public class Sensor implements ComponenteDrone {
         this.custoManutencao = custoManutencao;
     }
 
-    @Override
     public String getNome() { return nome; }
-
-    @Override
     public double getPeso() { return peso; }
-
-    @Override
     public double getCustoManutencao() { return custoManutencao; }
-
-    @Override
-    public void exibir(String indent) {
-        System.out.println(indent + "- Sensor: " + nome + " | Peso: " + peso + "kg | Custo: R$" + custoManutencao);
-    }
 }
