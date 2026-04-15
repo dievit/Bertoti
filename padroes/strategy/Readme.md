@@ -16,7 +16,7 @@ Este repositório contém um projeto acadêmico desenvolvido em Java para demons
 ---
 
 ## 1. O Cenário de Negócio
-O projeto gerencia **Clientes** de um banco (Aposentados, Estudantes, Empresas) e suas regras para o **Cálculo de Empréstimos**. O objetivo é aplicar diferentes taxas e carências de acordo com o perfil do cliente, ou impedir o cálculo para perfis não elegíveis.
+O projeto gerencia **Clientes** de um banco e suas regras para o **Cálculo de Empréstimos**. O objetivo é aplicar diferentes taxas de acordo com o perfil do cliente (consignado, empresarial) ou indicar que não há crédito disponível — tudo isso sem precisar criar subclasses para cada tipo de cliente.
 
 ---
 
@@ -28,15 +28,15 @@ No modelo anti-padrão, o método `calcularEmprestimo()` foi inserido diretament
 ---
 
 ## 3. O Modelo Padrão (Strategy Pattern)
-Para resolver o acoplamento, extraímos a lógica de cálculo da classe `Cliente` e a movemos para uma interface especializada chamada `CalcularEmprestimo`. 
+Para resolver o acoplamento, extraímos a lógica de cálculo da classe `Cliente` e a movemos para uma interface especializada chamada `CalcularEmprestimo`.
 
-**A Solução:** A classe `Cliente` agora usa **Composição**. Ela possui uma referência para a interface e um método `setEmprestimo()`. Isso permite "injetar" ou trocar a regra de cálculo de qualquer cliente dinamicamente, sem erros de execução e mantendo as subclasses limpas.
+**A Solução:** A classe `Cliente` agora é **concreta** e usa **Composição**. Ela possui uma referência para a interface e um método `setEmprestimo()`. Isso permite "injetar" ou trocar a regra de cálculo de qualquer cliente dinamicamente — sem herança, sem subclasses, sem erros de execução.
 
 ---
 
 ## 4. Visualização UML
 
-Abaixo estão os diagramas gerados automaticamente refletindo a estrutura do código.
+Abaixo estão os diagramas refletindo a estrutura do código.
 
 ### ❌ UML do Anti-padrão
 ```mermaid
@@ -60,39 +60,33 @@ classDiagram
 ### ✅ UML do Padrão Strategy
 ```mermaid
 classDiagram
-    direction TR
-    
+    direction LR
+
     class Cliente {
-        <<abstract>>
-        #String nome
-        #String email
-        #CalcularEmprestimo categoriaEmprestimo
+        -String nome
+        -String email
+        -String telefone
+        -String endereco
+        -CalcularEmprestimo categoriaEmprestimo
         +setEmprestimo(CalcularEmprestimo categoria)
-        +exibirInfo()
+        +simularEmprestimo(double valor, int meses)
     }
 
     class CalcularEmprestimo {
         <<interface>>
-        +calcular()
+        +calcular(double valor, int meses)
     }
-
-    class Aposentado
-    class Empresa
-    class Estudante
 
     class EmprestimoConsignado {
-        +calcular()
-    }
-    class EmprestimoEmpresa {
-        +calcular()
+        +calcular(double valor, int meses)
     }
 
-    Cliente <|-- Aposentado : Herança
-    Cliente <|-- Empresa : Herança
-    Cliente <|-- Estudante : Herança
-    
+    class EmprestimoEmpresa {
+        +calcular(double valor, int meses)
+    }
+
     Cliente o-- CalcularEmprestimo : Composição
-    
+
     CalcularEmprestimo <|.. EmprestimoConsignado : Realização
     CalcularEmprestimo <|.. EmprestimoEmpresa : Realização
 ```
@@ -103,8 +97,9 @@ classDiagram
 
 | Característica | ❌ Anti-padrão (Herança Rígida) | ✅ Padrão Strategy (Composição) |
 | :--- | :--- | :--- |
+| **Estrutura** | Herança — subclasses para cada tipo de cliente. | Composição — um único `Cliente` concreto. |
 | **Acoplamento** | **Alto:** A regra está presa na hierarquia. | **Baixo:** Regras isoladas em classes próprias. |
-| **Extensibilidade** | **Baixa:** Exige alterar a classe pai e subclasses. | **Alta:** Basta criar uma nova classe de estratégia. |
+| **Extensibilidade** | **Baixa:** Exige criar nova subclasse para novo tipo. | **Alta:** Basta criar uma nova classe de estratégia. |
 | **Flexibilidade** | **Nula:** Comportamento fixo na criação. | **Total:** Comportamento trocado via `setEmprestimo()`. |
 | **Segurança** | Depende de `try-catch` e lança Exceptions. | Baseado em contratos (Interfaces). |
 | **SOLID** | Viola o *Liskov Substitution Principle* (LSP). | Segue o *Open/Closed Principle* (OCP). |
@@ -114,17 +109,24 @@ classDiagram
 ## 6. Código Exemplo
 
 ```java
-// Instanciando subclasses de Cliente
-Cliente joao = new Aposentado("João", "joao@email.com", "123", "Rua 1");
-Cliente tech = new Empresa("Tech Corp", "tech@email.com", "456", "Rua 2");
+// Um único Cliente concreto — sem subclasses
+Cliente joao = new Cliente("João", "joao@email.com", "11-9999", "Rua 1");
+Cliente tech = new Cliente("Tech Corp", "tech@email.com", "11-8888", "Av. 2");
+Cliente carlos = new Cliente("Carlos", "carlos@email.com", "11-7777", "Rua 3");
 
 // Injetando as estratégias (Strategy em ação)
 joao.setEmprestimo(new EmprestimoConsignado());
-// tech não recebe estratégia (não é elegível para empréstimo)
+tech.setEmprestimo(new EmprestimoEmpresa());
+// carlos não recebe estratégia — sem crédito disponível
 
 // Execução limpa e segura
-joao.exibirInfo(); // Saída: Exibe infos + "Calculando empréstimo consignado..."
-tech.exibirInfo(); // Saída: Exibe infos + "Status: Sem empréstimo disponível."
+joao.simularEmprestimo(10000, 24);  // usa EmprestimoConsignado
+tech.simularEmprestimo(10000, 24);  // usa EmprestimoEmpresa
+carlos.simularEmprestimo(10000, 24); // exibe "Sem empréstimo disponível"
+
+// Trocar estratégia em tempo de execução
+joao.setEmprestimo(new EmprestimoEmpresa());
+joao.simularEmprestimo(10000, 24); // agora usa EmprestimoEmpresa
 ```
 
 ---
