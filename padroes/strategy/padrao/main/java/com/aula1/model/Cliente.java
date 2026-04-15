@@ -1,6 +1,6 @@
 package strategy.padrao.main.java.com.aula1.model;
 
-public abstract class Cliente {
+public class Cliente {
     protected String nome;
     protected String email;
     protected String telefone;
