@@ -2,7 +2,7 @@
 
 ## INTRODUÇÃO
 
-Sou um desenvolvedor e DBA, atualmente cursando Tecnólogo em Banco de Dados na FATEC de São José dos Campos. Ao longo da minha formação, venho construindo experiência em projetos Web com Java, Spring Boot, MySQL, PostgreSQL e React, além de conhecimentos em modelagem de dados e metodologias ágeis, especialmente Scrum.
+Sou um Analista de Suporte de TI Pleno com atuação em infraestrutura, atualmente cursando Tecnólogo em Banco de Dados na FATEC de São José dos Campos. Ao longo da minha formação, venho construindo experiência em projetos Web com Java, Spring Boot, MySQL, PostgreSQL e React, além de conhecimentos em modelagem de dados e metodologias ágeis, especialmente Scrum.
 
 ## CONTATO
 
